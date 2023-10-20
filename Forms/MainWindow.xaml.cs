@@ -29,7 +29,7 @@ namespace TaskMamanger.Forms
         public MainWindow()
         {
             InitializeComponent();
-            ApplicationContext con = new ApplicationContext();
+            //ApplicationContext con = new ApplicationContext();
             Users = new ObservableCollection<User>
             {
                 new User { ID = 1, Name = "Igor", Email="Igor@mail.com", Password=""}
@@ -38,6 +38,18 @@ namespace TaskMamanger.Forms
             Tasks = new ObservableCollection<Task>
             {
                 new Task { ID = 1, Name = "работа 1", Description = "сложная капец", EndTime = DateTime.Now , Priority = 1, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
+                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
                 new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
                 new Task { ID = 3, Name = "работа 3", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 }
 
