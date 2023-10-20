@@ -8,51 +8,56 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid Margin="10">
-            <ItemsControl Name="icTodoList" ItemsSource="{Binding TaskColumns}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*" />
-                                <RowDefinition Height="16*" />
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
-                                <TextBlock Margin="5 0 0 0" Text="Bebebe &lt;"/>
-                                <TextBlock x:Name="count" Text="{Binding ItemCount}" 
-                                           Margin="1" Background="AliceBlue" Foreground="LightGray"/>
-                            </Grid>
-                            <ItemsControl Name="icсTodoList" ItemsSource="{Binding Tasks}" Grid.Row="1">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="1*" />
-                                                <RowDefinition Height="3*" />
-                                                <RowDefinition Height="1*" />
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="8*" />
-                                                <ColumnDefinition Width="3*" />
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock x:Name="_date" Grid.Row="0" Grid.Column="0"
-                                                       Margin="5 0 0 0" Text="{Binding EndTime}"/>
-                                            <TextBlock x:Name="_name" Grid.Row="1" Grid.Column="0"
+            <StackPanel Orientation="Horizontal">
+                <ItemsControl Name="icTodoList" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Black" BorderThickness="1" Width="100">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                        <RowDefinition Height="16*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <TextBlock Margin="5 0 0 0" Text="Bebebe &lt;" HorizontalAlignment="Left"/>
+                                        <TextBlock x:Name="count" Text="{Binding Path=ItemCount}" 
+                                                   Background="AliceBlue" Foreground="LightGray"
+                                                   HorizontalAlignment="Right" Margin="0 0 5 0"/>
+                                    </Grid>
+                                    <ItemsControl Name="icсTodoList" ItemsSource="{Binding Path=Tasks}" Grid.Row="1">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="1*" />
+                                                        <RowDefinition Height="3*" />
+                                                        <RowDefinition Height="1*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="8*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock x:Name="_date" Grid.Row="0" Grid.Column="0"
+                                                       Margin="5 0 0 0" Text="{Binding Path=EndTime}"/>
+                                                    <TextBlock x:Name="_name" Grid.Row="1" Grid.Column="0"
                                                        VerticalAlignment="Center"
-                                                       Text="{Binding Name}"/>
-                                            <TextBlock x:Name="_id" Grid.Row="2" Grid.Column="0"
+                                                       Text="{Binding Path=Name}"/>
+                                                    <TextBlock x:Name="_id" Grid.Row="2" Grid.Column="0"
                                                        HorizontalAlignment="Left"
-                                                       Text="{Binding ID}"/>
-                                            <Image x:Name="_pic" Grid.Row="2" Grid.Column="1"
+                                                       Text="{Binding Path=ID}"/>
+                                                    <Image x:Name="_pic" Grid.Row="2" Grid.Column="1"
                                                    HorizontalAlignment="Right"
-                                                   Grid.RowSpan="2" Source="{Binding Picture}"/>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                                                   Grid.RowSpan="2" Source="{Binding Path=Picture}"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

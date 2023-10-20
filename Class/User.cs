@@ -14,7 +14,5 @@ namespace TaskMamanger.Class
         public string Password { get; set; }
 
         public IEnumerable<Task> Tasks { get; set; } = new HashSet<Task>();
-
-        
     }
 }

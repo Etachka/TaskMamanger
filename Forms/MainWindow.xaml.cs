@@ -25,11 +25,16 @@ namespace TaskMamanger.Forms
     {
         public ObservableCollection<Task> Tasks {  get; set; }
         public ObservableCollection<TaskColumn> TaskColumns {  get; set; }
-
+        public ObservableCollection<User> Users { get; set; }
         public MainWindow()
         {
-            
+            InitializeComponent();
             ApplicationContext con = new ApplicationContext();
+            Users = new ObservableCollection<User>
+            {
+                new User { ID = 1, Name = "Igor", Email="Igor@mail.com", Password=""}
+                
+            };
             Tasks = new ObservableCollection<Task>
             {
                 new Task { ID = 1, Name = "работа 1", Description = "сложная капец", EndTime = DateTime.Now , Priority = 1, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
@@ -39,11 +44,11 @@ namespace TaskMamanger.Forms
             };
             TaskColumns = new ObservableCollection<TaskColumn>
             {
-                new TaskColumn { Id = 1, Name = "Не начали", ItemCount= Tasks.Count},
-                new TaskColumn {Id = 2, Name = " Начали", ItemCount= Tasks.Count},
-                new TaskColumn {Id = 3, Name = " Закончили", ItemCount= Tasks.Count},
+                new TaskColumn { Id = 1, Name = "Не начали", ItemCount= Tasks.Count, Tasks = Tasks},
+                new TaskColumn {Id = 2, Name = " Начали", ItemCount= Tasks.Count, Tasks = Tasks},
+                new TaskColumn {Id = 3, Name = " Закончили", ItemCount= Tasks.Count, Tasks = Tasks},
             };
-            InitializeComponent();
+            icTodoList.ItemsSource = TaskColumns;
         }
     }
 }
