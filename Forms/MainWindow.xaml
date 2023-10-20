@@ -31,12 +31,12 @@
                                                         </Grid.RowDefinitions>
 
                                                         <TextBlock x:Name="_date" Grid.Row="0" Foreground="DimGray"
-                                               Margin="0,0,0,5" Text="{Binding EndTime}" FontWeight="Bold"/>
+                                       Margin="0,0,0,5" Text="{Binding EndTime}" FontWeight="Bold"/>
                                                         <TextBlock x:Name="_name" Grid.Row="1" Foreground="DimGray"
-                                               Text="{Binding Name}"/>
+                                       Text="{Binding Name}"/>
                                                         <StackPanel Orientation="Horizontal" Grid.Row="2">
                                                             <TextBlock x:Name="_id" Foreground="Gray"
-                                                   Text="{Binding ID}"/>
+                                           Text="{Binding ID}"/>
                                                             <Ellipse Width="20" Height="20" Fill="HotPink" HorizontalAlignment="Right" Margin="10,0,0,0">
                                                                 <Ellipse.ToolTip>
                                                                     <TextBlock Text="{Binding Picture}" Foreground="DimGray"/>
