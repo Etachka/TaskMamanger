@@ -14,6 +14,7 @@ namespace TaskMamanger.Class
             "User ID=user09;Password=09;TrustServerCertificate=True";
         public DbSet<User> Users { get; set; }
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskColumn> TaskColumns { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
