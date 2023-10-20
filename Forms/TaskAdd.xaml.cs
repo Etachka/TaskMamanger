@@ -29,7 +29,7 @@ namespace TaskMamanger.Forms
         {
             using (var context = new ApplicationContext())
             {
-                var task1 = new Task { Name = "olega", Description = "", Priority = 1, EndTime = DateTime.Now.AddDays(7), Type = 1, Picture = "1", UserID = 1, TaskColumnID = 1 };
+                var task1 = new Task { Name = NameTask.Text, Description = DescripTask.Text, Priority = Int32.Parse(PrioTask.Text), EndTime = DateTime.Now.AddDays(7), Type = 1, Picture = "1", UserID = 1, TaskColumnID = 1 };
                 var task2 = new Task { Name = "fds", Description = "", Priority = 1, EndTime = DateTime.Now.AddDays(17), Type = 1, Picture = "1", UserID = 1, TaskColumnID = 1 };
                 context.Tasks.Add(task1);
                 context.Tasks.Add(task2);
