@@ -26,6 +26,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Text="Добавление заданий"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text=""/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="Введите название задания" Margin="0 10 0 10" TextAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="Введите описание задания" Margin="0 10 0 10" TextAlignment="Center"/>
+        <TextBox Grid.Row="4" Grid.Column="1" Text="Введите приоритет задания" Margin="0 10 0 10" TextAlignment="Center"/>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="Введите дедлайн задания" Margin="0 10 0 10" TextAlignment="Center"/>
+        
     </Grid>
 </Window>
