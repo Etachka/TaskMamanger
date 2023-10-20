@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 using System;
 using System.Collections.Generic;
@@ -26,41 +27,12 @@ namespace TaskMamanger.Forms
         public ObservableCollection<Task> Tasks {  get; set; }
         public ObservableCollection<TaskColumn> TaskColumns {  get; set; }
         public ObservableCollection<User> Users { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
             ApplicationContext con = new ApplicationContext();
-            Users = new ObservableCollection<User>
-            {
-                new User { ID = 1, Name = "Igor", Email="Igor@mail.com", Password=""}
-                
-            };
-            Tasks = new ObservableCollection<Task>
-            {
-                new Task { ID = 1, Name = "работа 1", Description = "сложная капец", EndTime = DateTime.Now , Priority = 1, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 2, Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now , Priority = 3, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 },
-                new Task { ID = 3, Name = "работа 3", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, Type = 1, Picture = "тут могла быть ваша картинка", UserID = 1 }
-
-            };
-            TaskColumns = new ObservableCollection<TaskColumn>
-            {
-                new TaskColumn { Id = 1, Name = "Не начали", ItemCount= Tasks.Count, Tasks = Tasks},
-                new TaskColumn {Id = 2, Name = " Начали", ItemCount= Tasks.Count, Tasks = Tasks},
-                new TaskColumn {Id = 3, Name = " Закончили", ItemCount= Tasks.Count, Tasks = Tasks},
-            };
-            icTodoList.ItemsSource = TaskColumns;
+            
 
             using (var context = new ApplicationContext())
             {
@@ -82,6 +54,27 @@ namespace TaskMamanger.Forms
                 context.Tasks.Add(task2);
                 context.SaveChanges();
             }
+
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            TaskColumns = new ObservableCollection<TaskColumn>();
+
+            using (var context = new ApplicationContext())
+            {
+                var columns = context.TaskColumns.Include("Tasks").ToList();
+                foreach (var column in columns)
+                {
+                    TaskColumns.Add(column);
+                }
+                foreach (var column in TaskColumns)
+                {
+                    column.ItemCount = column.Tasks.Count();
+                }
+            }
+            icTodoList.ItemsSource = TaskColumns;
         }
     }
 }
