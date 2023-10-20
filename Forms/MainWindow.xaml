@@ -15,9 +15,12 @@
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="50"/>
+                                    
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="{Binding Name}" FontWeight="Bold" FontSize="18" Margin="10" Foreground="DimGray" />
+                                
                                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                                     <ItemsControl ItemsSource="{Binding Tasks}">
                                         <ItemsControl.ItemTemplate>
@@ -29,26 +32,50 @@
                                                             <RowDefinition Height="Auto"/>
                                                             <RowDefinition Height="Auto"/>
                                                         </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="4*"/>
+                                                            <ColumnDefinition Width="1*"/>
+                                                        </Grid.ColumnDefinitions>
 
-                                                        <TextBlock x:Name="_date" Grid.Row="0" Foreground="DimGray"
-                                       Margin="0,0,0,5" Text="{Binding EndTime}" FontWeight="Bold"/>
-                                                        <TextBlock x:Name="_name" Grid.Row="1" Foreground="DimGray"
+                                                        <TextBlock x:Name="_date" Grid.Row="0" Grid.Column="0" Foreground="DimGray"
+                                       Margin="0,0,0,5" Text="{Binding EndTime}" FontWeight="Bold" FontSize="11"/>
+                                                        <TextBlock x:Name="_name" Grid.Column="0" Grid.Row="1" Foreground="DimGray"
                                        Text="{Binding Name}"/>
-                                                        <StackPanel Orientation="Horizontal" Grid.Row="2">
-                                                            <TextBlock x:Name="_id" Foreground="Gray"
+                                                        <TextBlock x:Name="_id" Grid.Column="0" Grid.Row="2" Foreground="Gray"
                                            Text="{Binding ID}"/>
-                                                            <Ellipse Width="20" Height="20" Fill="HotPink" HorizontalAlignment="Right" Margin="10,0,0,0">
-                                                                <Ellipse.ToolTip>
-                                                                    <TextBlock Text="{Binding Picture}" Foreground="DimGray"/>
-                                                                </Ellipse.ToolTip>
-                                                            </Ellipse>
-                                                        </StackPanel>
+                                                        <Ellipse Width="25" Height="25" Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Center"    Fill="HotPink" HorizontalAlignment="Center" Margin="10,0,0,0">
+                                                            <Ellipse.ToolTip>
+                                                                <TextBlock Text="{Binding Picture}" Foreground="DimGray"/>
+                                                            </Ellipse.ToolTip>
+                                                        </Ellipse>
                                                     </Grid>
                                                 </Border>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
+                                    <ScrollViewer.Style>
+                                        <Style TargetType="ScrollViewer">
+                                            
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ShowButton}" Value="false">
+                                                    <Setter Property="Grid.RowSpan" Value="2"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ScrollViewer.Style>
                                 </ScrollViewer>
+                                <Button Grid.Row="2" Content="+" Width="30" Height="30" Margin="10">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ShowButton}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </Grid>
                         </Border>
                     </DataTemplate>

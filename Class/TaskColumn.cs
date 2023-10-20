@@ -13,5 +13,13 @@ namespace TaskMamanger.Class
         public int ItemCount { get; set; }
 
         public IEnumerable<Task> Tasks { get; set; } = new HashSet<Task>();
+
+        public bool ShowButton
+        {
+            get
+            {
+                return Name == "Не начали";
+            }
+        }
     }
 }
