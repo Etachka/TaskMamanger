@@ -30,6 +30,10 @@ namespace TaskMamanger.Forms
         {
             InitializeComponent();
             ApplicationContext con = new ApplicationContext();
+
+            Users = new ObservableCollection<User>(con.Users.ToList());
+            Tasks = new ObservableCollection<Task>(con.Tasks.ToList());
+            TaskColumns = new ObservableCollection<TaskColumn>(con.TaskColumns.ToList());
             //Users = new ObservableCollection<User>
             //{
             //    new User { ID = 1, Name = "Igor", Email="Igor@mail.com", Password=""}
