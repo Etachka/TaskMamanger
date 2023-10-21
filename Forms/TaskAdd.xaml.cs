@@ -29,11 +29,38 @@ namespace TaskMamanger.Forms
         {
             using (var context = new ApplicationContext())
             {
-                var task1 = new Task { Name = NameTask.Text, Description = DescripTask.Text, Priority = Int32.Parse(PrioTask.Text), EndTime = DateTime.Now.AddDays(7), Type = 1, Picture = "1", UserID = 1, TaskColumnID = 1 };
-                var task2 = new Task { Name = "fds", Description = "", Priority = 1, EndTime = DateTime.Now.AddDays(17), Type = 1, Picture = "1", UserID = 1, TaskColumnID = 1 };
+
+                var task1 = new Task { Name = NameTask.Text, Description = DescripTask.Text, Priority = Int32.Parse(PrioTask.Text), EndTime = DateTime.Parse(DateTask.Text)/*, Type = 1, Picture = "1", UserID = 1*/, TaskColumnID = 1 };
                 context.Tasks.Add(task1);
-                context.Tasks.Add(task2);
                 context.SaveChanges();
+            }
+        }
+
+
+        private void NameTask_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (NameTask.Text == "Введите название задания")
+            {
+                NameTask.Clear();
+                NameTask.Foreground = Brushes.Black;
+            }
+        }
+
+        private void DescripTask_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (DescripTask.Text == "Введите описание задания")
+            {
+                DescripTask.Clear();
+                DescripTask.Foreground = Brushes.Black;
+            }
+        }
+
+        private void PrioTask_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (PrioTask.Text == "Введите приоритет задания")
+            {
+                PrioTask.Clear();
+                PrioTask.Foreground = Brushes.Black;
             }
         }
     }

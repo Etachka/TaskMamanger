@@ -12,13 +12,18 @@ namespace TaskMamanger.Class
         public string Description { get; set; }
         public int Priority { get; set; }
         public DateTime EndTime { get; set; }
-        public int Type { get; set; }
-        public string Picture { get; set; }
-
         public int UserID { get; set; }
         public User User { get; set; }
 
         public int TaskColumnID { get; set; }
         public TaskColumn TaskColumn { get; set; }
+
+        public bool EndTask
+        {
+            get
+            {
+                return TaskColumnID == 3;
+            }
+        }
     }
 }

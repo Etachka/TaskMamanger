@@ -21,5 +21,12 @@ namespace TaskMamanger.Class
                 return Name == "Не начали";
             }
         }
+        public bool EndButton
+        {
+            get
+            {
+                return Name == "Закончили";
+            }
+        }
     }
 }
