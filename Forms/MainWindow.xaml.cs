@@ -30,41 +30,41 @@ namespace TaskMamanger.Forms
         {
             InitializeComponent();
             ApplicationContext con = new ApplicationContext();
-            var User1 = new User { Name = "Igor", Email = "Igor@mail.com", Password = "Igor227" };
-            var User2 = new User { Name = "Oleg", Email = "Oleg@mail.com", Password = "Oleg229" };
-            con.Users.Add(User1);
-            con.Users.Add(User2);
-            con.SaveChanges();
-            var TaskColumn1 = new TaskColumn { Name = "Не начали", ItemCount = 0 };
-            var TaskColumn2 = new TaskColumn { Name = "Начали", ItemCount = 0 };
-            var TaskColumn3 = new TaskColumn { Name = "Закончили", ItemCount = 0 };
-            con.TaskColumns.Add(TaskColumn1);
-            con.TaskColumns.Add(TaskColumn2);
-            con.TaskColumns.Add(TaskColumn3);
-            con.Tasks.AddRange(new[]
-            {
-                new Task {Name = "работа 1", Description = "сложная капец", EndTime = DateTime.Now, Priority = 1, UserID = 1, TaskColumnID = 3},
-                    new Task {Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
-                    new Task {Name = "работа 3", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
-                    new Task {Name = "работа 4", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
-                    new Task {Name = "работа 5", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
-                    new Task {Name = "работа 6", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
-                    new Task {Name = "работа 7", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
-                    new Task {Name = "работа 8", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
-                    new Task {Name = "работа 9", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
-                    new Task {Name = "работа 10", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
-                    new Task {Name = "работа 11", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
-                    new Task {Name = "работа 12", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
-                    new Task {Name = "работа 13", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
-                    new Task {Name = "работа 14", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
-                    new Task {Name = "работа 15", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, UserID = 1 , TaskColumnID =2},
-                    new Task {Name = "работа 16", Description = "ну такая капец", EndTime = DateTime.Now , Priority = 3, UserID = 1 , TaskColumnID =2},
-                    new Task {Name = "работа 17", Description = "дефолт капец", EndTime = DateTime.Now , Priority = 3, UserID = 1 , TaskColumnID =2},
-                    new Task {Name = "работа 18", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, UserID = 1 , TaskColumnID =2},
-                    new Task {Name = "работа 19", Description = "лютая капец", EndTime = DateTime.Now , Priority = 1, UserID = 1 , TaskColumnID =2}
+            //var User1 = new User { Name = "Igor", Email = "Igor@mail.com", Password = "Igor227" };
+            //var User2 = new User { Name = "Oleg", Email = "Oleg@mail.com", Password = "Oleg229" };
+            //con.Users.Add(User1);
+            //con.Users.Add(User2);
+            //con.SaveChanges();
+            //var TaskColumn1 = new TaskColumn { Name = "Не начали", ItemCount = 0 };
+            //var TaskColumn2 = new TaskColumn { Name = "Начали", ItemCount = 0 };
+            //var TaskColumn3 = new TaskColumn { Name = "Закончили", ItemCount = 0 };
+            //con.TaskColumns.Add(TaskColumn1);
+            //con.TaskColumns.Add(TaskColumn2);
+            //con.TaskColumns.Add(TaskColumn3);
+            //con.Tasks.AddRange(new[]
+            //{
+            //    new Task {Name = "работа 1", Description = "сложная капец", EndTime = DateTime.Now, Priority = 1, UserID = 1, TaskColumnID = 3},
+            //        new Task {Name = "работа 2", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
+            //        new Task {Name = "работа 3", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
+            //        new Task {Name = "работа 4", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
+            //        new Task {Name = "работа 5", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
+            //        new Task {Name = "работа 6", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
+            //        new Task {Name = "работа 7", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
+            //        new Task {Name = "работа 8", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
+            //        new Task {Name = "работа 9", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
+            //        new Task {Name = "работа 10", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
+            //        new Task {Name = "работа 11", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
+            //        new Task {Name = "работа 12", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 2},
+            //        new Task {Name = "работа 13", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 3},
+            //        new Task {Name = "работа 14", Description = "лёгкая капец", EndTime = DateTime.Now, Priority = 3, UserID = 1, TaskColumnID = 1},
+            //        new Task {Name = "работа 15", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, UserID = 1 , TaskColumnID =2},
+            //        new Task {Name = "работа 16", Description = "ну такая капец", EndTime = DateTime.Now , Priority = 3, UserID = 1 , TaskColumnID =2},
+            //        new Task {Name = "работа 17", Description = "дефолт капец", EndTime = DateTime.Now , Priority = 3, UserID = 1 , TaskColumnID =2},
+            //        new Task {Name = "работа 18", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, UserID = 1 , TaskColumnID =2},
+            //        new Task {Name = "работа 19", Description = "лютая капец", EndTime = DateTime.Now , Priority = 1, UserID = 1 , TaskColumnID =2}
 
-            });
-            con.SaveChanges();
+            //});
+            //con.SaveChanges();
 
 
             TaskColumnList = con.TaskColumns.ToList();
@@ -89,7 +89,20 @@ namespace TaskMamanger.Forms
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             TaskAdd taskAdd = new TaskAdd();
-            taskAdd.ShowDialog();
+            taskAdd.Closed += TaskAdd_Closed;
+            taskAdd.Show();
+        }
+        private void TaskAdd_Closed(object sender, EventArgs e)
+        {
+            using (var con = new ApplicationContext())
+            {
+                TaskColumnList = null;
+                TaskColumnList = con.TaskColumns.ToList();
+                icTodoList.ItemsSource = TaskColumnList;
+                TaskList = null;
+                TaskList = con.Tasks.ToList();
+            }
+            
         }
         //для переноса задачи в другой столбец
         private void Pointer_Click(object sender, RoutedEventArgs e)

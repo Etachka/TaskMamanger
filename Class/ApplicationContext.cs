@@ -24,11 +24,19 @@ namespace TaskMamanger.Class
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Task>()
+            .HasOne(b => b.TaskColumn)
+            .WithMany(a => a.Tasks)
+            .HasForeignKey(b => b.TaskColumnID);
+
+            modelBuilder.Entity<Task>()
+            .HasOne(b => b.User)
+            .WithMany(a => a.Tasks)
+            .HasForeignKey(b => b.UserID);
         }
 
         public ApplicationContext()
         {
-            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
     }
