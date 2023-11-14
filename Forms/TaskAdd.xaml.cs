@@ -29,8 +29,14 @@ namespace TaskMamanger.Forms
         {
             using (var context = new ApplicationContext())
             {
-
-                var task1 = new Task { Name = NameTask.Text, Description = DescripTask.Text, Priority = Int32.Parse(PrioTask.Text), EndTime = DateTime.Parse(DateTask.Text)/*, Type = 1, Picture = "1", UserID = 1*/, TaskColumnID = 1 };
+                var task1 = new Task
+                {
+                    Name = NameTask.Text,
+                    Description = DescripTask.Text,
+                    Priority = Int32.Parse(PrioTask.Text),
+                    EndTime = DateTime.Parse(DateTask.Text),
+                    TaskColumnID = 1
+                };
                 context.Tasks.Add(task1);
                 context.SaveChanges();
             }
