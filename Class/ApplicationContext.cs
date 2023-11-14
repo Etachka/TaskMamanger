@@ -34,7 +34,19 @@ namespace TaskMamanger.Class
             .WithMany(a => a.Tasks)
             .HasForeignKey(b => b.UserID);
         }
+        public override int SaveChanges()
+        {
+            // Используем событие SavingChanges
+            foreach (var entry in ChangeTracker.Entries()
+                .Where(e => e.State == EntityState.Added && e.Entity is Task))
+            {
+                // Увеличиваем значение столбца в связанной записи
+                var TC = (Task)entry.Entity;
+                TC.TaskColumn.ItemCount += 1;
+            }
 
+            return base.SaveChanges();
+        }
         public ApplicationContext()
         {
             Database.EnsureCreated();

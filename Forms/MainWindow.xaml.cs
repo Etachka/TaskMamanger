@@ -30,17 +30,20 @@ namespace TaskMamanger.Forms
         {
             InitializeComponent();
             ApplicationContext con = new ApplicationContext();
-            //var User1 = new User { Name = "Igor", Email = "Igor@mail.com", Password = "Igor227" };
-            //var User2 = new User { Name = "Oleg", Email = "Oleg@mail.com", Password = "Oleg229" };
-            //con.Users.Add(User1);
-            //con.Users.Add(User2);
-            //con.SaveChanges();
-            //var TaskColumn1 = new TaskColumn { Name = "Не начали", ItemCount = 0 };
-            //var TaskColumn2 = new TaskColumn { Name = "Начали", ItemCount = 0 };
-            //var TaskColumn3 = new TaskColumn { Name = "Закончили", ItemCount = 0 };
-            //con.TaskColumns.Add(TaskColumn1);
-            //con.TaskColumns.Add(TaskColumn2);
-            //con.TaskColumns.Add(TaskColumn3);
+
+            //con.Users.AddRange(new[]
+            //{
+            //    new User { Name = "Igor", Email = "Igor@mail.com", Password = "Igor227" },
+            //    new User { Name = "Oleg", Email = "Oleg@mail.com", Password = "Oleg229" }
+            //});
+            
+            //con.TaskColumns.AddRange(new[]
+            //{
+            //    new TaskColumn { Name = "Не начали", ItemCount = 0 },
+            //    new TaskColumn { Name = "Начали", ItemCount = 0 },
+            //    new TaskColumn { Name = "Закончили", ItemCount = 0 }
+            //});
+
             //con.Tasks.AddRange(new[]
             //{
             //    new Task {Name = "работа 1", Description = "сложная капец", EndTime = DateTime.Now, Priority = 1, UserID = 1, TaskColumnID = 3},
@@ -62,7 +65,6 @@ namespace TaskMamanger.Forms
             //        new Task {Name = "работа 17", Description = "дефолт капец", EndTime = DateTime.Now , Priority = 3, UserID = 1 , TaskColumnID =2},
             //        new Task {Name = "работа 18", Description = "средняя капец", EndTime = DateTime.Now , Priority = 2, UserID = 1 , TaskColumnID =2},
             //        new Task {Name = "работа 19", Description = "лютая капец", EndTime = DateTime.Now , Priority = 1, UserID = 1 , TaskColumnID =2}
-
             //});
             //con.SaveChanges();
 
@@ -71,19 +73,6 @@ namespace TaskMamanger.Forms
             icTodoList.ItemsSource = TaskColumnList;
             TaskList = con.Tasks.ToList();
             
-
-            //int maxTaskColumnID = con.Tasks.Max(task => task.TaskColumnID);
-            //for (int i = 0; i < maxTaskColumnID; i++)
-            //{
-            //    var taskColumn = new TaskColumn { Name = $"Столбец {i}" };
-            //    var tasksInColumn = con.Tasks.Where(task => task.TaskColumnID == i).ToList();
-            //    var taskList = new List<Task>();
-            //    taskList.AddRange(tasksInColumn);
-            //    taskColumn.Tasks = taskList;
-            //    TaskColumns.Add(taskColumn);
-            //}
-
-            //icTodoList.ItemsSource = TaskColumns;
         }
         //переход на форму добавления
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -92,6 +81,7 @@ namespace TaskMamanger.Forms
             taskAdd.Closed += TaskAdd_Closed;
             taskAdd.Show();
         }
+
         private void TaskAdd_Closed(object sender, EventArgs e)
         {
             using (var con = new ApplicationContext())
@@ -102,7 +92,7 @@ namespace TaskMamanger.Forms
                 TaskList = null;
                 TaskList = con.Tasks.ToList();
             }
-            
+
         }
         //для переноса задачи в другой столбец
         private void Pointer_Click(object sender, RoutedEventArgs e)

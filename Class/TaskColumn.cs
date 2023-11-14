@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,9 @@ namespace TaskMamanger.Class
         public int Id { get; set; }
         public string Name { get; set; }
         public int ItemCount { get; set; }
-
+        
         public IEnumerable<Task> Tasks { get; set; } = new HashSet<Task>();
+
 
         public bool ShowButton
         {
@@ -28,5 +30,6 @@ namespace TaskMamanger.Class
                 return Name == "Закончили";
             }
         }
+        
     }
 }
