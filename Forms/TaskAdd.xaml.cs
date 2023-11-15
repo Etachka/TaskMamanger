@@ -93,5 +93,18 @@ namespace TaskMamanger.Forms
                 PrioTask.Foreground = Brushes.Black;
             }
         }
+
+        private void NameTask_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void PrioTask_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!e.Text.All(char.IsDigit))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

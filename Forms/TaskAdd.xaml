@@ -26,9 +26,9 @@
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="18" Text="Добавление заданий"/>
-        <TextBox x:Name="NameTask" Grid.Row="2" Grid.Column="1" Foreground="DarkGray" Text="Введите название задания" Margin=" 5 15 5 15" TextAlignment="Center" KeyDown="NameTask_KeyDown"/>
+        <TextBox x:Name="NameTask" Grid.Row="2" Grid.Column="1" Foreground="DarkGray" Text="Введите название задания" Margin=" 5 15 5 15" TextAlignment="Center" KeyDown="NameTask_KeyDown" PreviewTextInput="NameTask_PreviewTextInput"/>
         <TextBox x:Name="DescripTask" Grid.Row="3" Grid.Column="1" Foreground="DarkGray"  Text="Введите описание задания" Margin=" 5 15 5 15" TextAlignment="Center" KeyDown="DescripTask_KeyDown"/>
-        <TextBox x:Name="PrioTask" Grid.Row="4" Grid.Column="1" Foreground="DarkGray" MaxLength="1" Text="Введите приоритет задания" Margin=" 5 15 5 15" TextAlignment="Center" KeyDown="PrioTask_KeyDown"/>
+        <TextBox x:Name="PrioTask" Grid.Row="4" Grid.Column="1" Foreground="DarkGray" MaxLength="1" Text="Введите приоритет задания" Margin=" 5 15 5 15" TextAlignment="Center" KeyDown="PrioTask_KeyDown" PreviewTextInput="PrioTask_PreviewTextInput"/>
         <DatePicker x:Name="DateTask" Grid.Row="5" Grid.Column="1" Margin=" 5 15 5 15" DisplayDateStart="{x:Static sys:DateTime.Now}"/>
         <Button x:Name="AddTaskBaton" Grid.Row="7" Grid.Column="1" Content="Добавить задание" Margin=" 5 15 5 15" Background="White" Click="AddTaskBaton_Click"/>
     </Grid>

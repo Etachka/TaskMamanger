@@ -20,7 +20,17 @@ namespace TaskMamanger.Class
         {
             optionsBuilder.UseSqlServer(_connection);
         }
+        public void UpdateColumnItemCounts()
+        {
+            var columns = TaskColumns.Include(c => c.Tasks).ToList();
 
+            foreach (var column in columns)
+            {
+                column.ItemCount = column.Tasks.Count();
+            }
+
+            SaveChanges();
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -44,6 +54,7 @@ namespace TaskMamanger.Class
                 var TC = (Task)entry.Entity;
                 TC.TaskColumn.ItemCount += 1;
             }
+
 
             return base.SaveChanges();
         }

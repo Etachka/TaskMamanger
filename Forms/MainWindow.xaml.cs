@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 using System;
 using System.Collections.Generic;
@@ -97,7 +98,23 @@ namespace TaskMamanger.Forms
         //для переноса задачи в другой столбец
         private void Pointer_Click(object sender, RoutedEventArgs e)
         {
+            using (var con = new ApplicationContext())
+            {
+                if (sender is FrameworkElement element && element.DataContext is Task task)
+                {
+                    task.TaskColumnID += 1;
+                    con.Entry(task).State = EntityState.Modified;
+                    
+                    con.SaveChanges();
+                    con.UpdateColumnItemCounts();
+                    TaskColumnList = null;
+                    TaskColumnList = con.TaskColumns.ToList();
+                    icTodoList.ItemsSource = TaskColumnList;
 
+                    TaskList = null;
+                    TaskList = con.Tasks.ToList();
+                }
+            }
         }
     }
 }
