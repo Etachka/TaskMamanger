@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,19 @@ namespace TaskMamanger.Forms
     /// </summary>
     public partial class TaskAdd : Window
     {
+        private UserList UL;
+
         public TaskAdd()
         {
             InitializeComponent();
+            UL = new UserList();
+            DataContext = UL;
+
+            // Инициализация данных выпадающего списка
+            using (var context = new ApplicationContext())
+            {
+                UL.Users = new ObservableCollection<User>(context.Users.ToList());
+            }
         }
 
         private void AddTaskBaton_Click(object sender, RoutedEventArgs e)
@@ -36,30 +47,30 @@ namespace TaskMamanger.Forms
                 string description = DescripTask.Text;
                 int priority = Int32.Parse(PrioTask.Text);
                 DateTime endTime = DateTime.Parse(DateTask.Text);
-                int userID = 1;
+
+                int userID = (int)UserComboBox.SelectedValue;
                 int taskColumnID = 1;
 
-                TaskColumn taskColumn = con.TaskColumns.FirstOrDefault(a => a.Id == taskColumnID);
-                if (taskColumn == null)
-                {
-                    // Если колонка не найдена, создаем новую
-                    taskColumn = new TaskColumn { Name = "Не начали", ItemCount = 0 };
-                    con.TaskColumns.Add(taskColumn);
-                    con.SaveChanges(); // Сохранение изменений в базе данных
-                }
+                //TaskColumn taskColumn = con.TaskColumns.FirstOrDefault(a => a.Id == taskColumnID);
+                //if (taskColumn == null)
+                //{
+                //    // Если колонка не найдена, создаем новую
+                //    taskColumn = new TaskColumn { Name = "Не начали", ItemCount = 0 };
+                //    con.TaskColumns.Add(taskColumn);
+                //    con.SaveChanges(); // Сохранение изменений в базе данных
+                //}
 
-                User user = con.Users.FirstOrDefault(a => a.ID == userID);
-                if (user == null)
-                {
-                    // Если пользователь не найден, создаем нового
-                    user = new User { Name = "Олежа", Email = "aboba@aboba.aboba", Password = "abobaaa" };
-                    con.Users.Add(user);
-                    con.SaveChanges(); // Сохранение изменений в базе данных
-                }
+                //User user = con.Users.FirstOrDefault(a => a.ID == userID);
+                //if (user == null)
+                //{
+                //    // Если пользователь не найден, создаем нового
+                //    user = new User { Name = "Олежа", Email = "aboba@aboba.aboba", Password = "abobaaa" };
+                //    con.Users.Add(user);
+                //    con.SaveChanges(); // Сохранение изменений в базе данных
+                //}
 
                 Task task = new Task { Name = name, Description = description, Priority = priority, EndTime = endTime, UserID = userID, TaskColumnID = taskColumnID };
 
-                // Добавление задачи в контекст и сохранение изменений
                 con.Tasks.Add(task);
                 con.SaveChanges();
             }

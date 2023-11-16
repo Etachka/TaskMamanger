@@ -49,11 +49,22 @@ namespace TaskMamanger.Class
             foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added && e.Entity is Task))
             {
                 var TC = (Task)entry.Entity;
-                TC.TaskColumn.ItemCount += 1;
+                if (TC.TaskColumn != null)
+                {
+                    TC.TaskColumn.ItemCount += 1;
+                }
             }
 
 
             return base.SaveChanges();
+        }
+        public void RemoveTask(Task task)
+        {
+            if (task != null && Tasks.Contains(task))
+            {
+                Tasks.Remove(task);
+                SaveChanges();
+            }
         }
         public ApplicationContext()
         {

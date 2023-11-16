@@ -30,7 +30,7 @@ namespace TaskMamanger.Forms
         public MainWindow()
         {
             InitializeComponent();
-            ApplicationContext con = new ApplicationContext();
+
 
             //con.Users.AddRange(new[]
             //{
@@ -72,10 +72,12 @@ namespace TaskMamanger.Forms
             //});
             //con.SaveChanges();
 
-
-            TaskColumnList = con.TaskColumns.ToList();
-            icTodoList.ItemsSource = TaskColumnList;
-            TaskList = con.Tasks.ToList();
+            using (var con = new ApplicationContext())
+            {
+                TaskColumnList = con.TaskColumns.ToList();
+                icTodoList.ItemsSource = TaskColumnList;
+                TaskList = con.Tasks.ToList();
+            }
             
         }
         //переход на форму добавления
@@ -137,7 +139,6 @@ namespace TaskMamanger.Forms
                     {
                         task.TaskColumnID -= 1;
                         con.Entry(task).State = EntityState.Modified;
-
                         con.SaveChanges();
                         con.UpdateColumnItemCounts();
                         TaskColumnList = null;
@@ -152,6 +153,116 @@ namespace TaskMamanger.Forms
                         MessageBox.Show("Невозможно уменьшить значение TaskColumnID", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                 }
+            }
+        }
+        public string UserName
+        {
+            
+            get
+            {
+                using (var con = new ApplicationContext())
+                {
+                    var task = con.Tasks.FirstOrDefault(x => x.UserID != null);
+                    var user = task != null ? task.User : null;
+                    return user?.Name;
+                }
+            }
+        }
+
+        private void Search_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Search.Text == "Введите название задания")
+            {
+                Search.Clear();
+                Search.Foreground = Brushes.Black;
+            }
+            
+
+        }
+        private void PerformSearch(string searchText)
+        {
+            using (var con = new ApplicationContext())
+            {
+                var filteredTasks = con.Tasks.Where(task => task.Name.Contains(searchText)).ToList();
+
+                TaskColumnList = null;
+                TaskColumnList = con.TaskColumns.ToList();
+                icTodoList.ItemsSource = TaskColumnList;
+                TaskList = null;
+                
+                TaskList = filteredTasks;
+                
+            }
+        }
+
+        private void Search_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            
+        }
+
+        private void Search_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(Search.Text != "Введите название задания")
+            {
+                PerformSearch(Search.Text);
+            }
+            
+        }
+
+
+        private void Drop_database_Click(object sender, RoutedEventArgs e)
+        {
+            using (var con = new ApplicationContext())
+            {
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить эту задачу?", "Подтверждение удаления", MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                {
+                Button dropButton = (Button)sender;
+                Task task = (Task)dropButton.DataContext;
+
+                    if (task != null && con.Tasks.Contains(task))
+                    {
+
+                    
+                        con.RemoveTask(task);
+                        TaskColumnList = null;
+                        TaskColumnList = con.TaskColumns.ToList();
+                        icTodoList.ItemsSource = TaskColumnList;
+                        TaskList = null;
+                        TaskList = con.Tasks.ToList();
+                        
+                    
+
+
+                    }
+                }
+            }
+        }
+
+        private void Drop_database_Drop(object sender, DragEventArgs e)
+        {
+            using (var con = new ApplicationContext())
+            {
+                TaskColumnList = null;
+                TaskColumnList = con.TaskColumns.ToList();
+                icTodoList.ItemsSource = TaskColumnList;
+                TaskList = null;
+                TaskList = con.Tasks.ToList();
+            }
+        }
+
+        private void ALARM_Click(object sender, RoutedEventArgs e)
+        {
+            using (var con = new ApplicationContext())
+            {
+                TaskColumnList = null;
+                TaskColumnList = con.TaskColumns.ToList();
+                con.UpdateColumnItemCounts();
+                icTodoList.ItemsSource = TaskColumnList;
+                con.UpdateColumnItemCounts();
+                TaskList = null;
+                TaskList = con.Tasks.ToList();
             }
         }
     }
