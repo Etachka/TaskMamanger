@@ -46,11 +46,8 @@ namespace TaskMamanger.Class
         }
         public override int SaveChanges()
         {
-            // Используем событие SavingChanges
-            foreach (var entry in ChangeTracker.Entries()
-                .Where(e => e.State == EntityState.Added && e.Entity is Task))
+            foreach (var entry in ChangeTracker.Entries().Where(e => e.State == EntityState.Added && e.Entity is Task))
             {
-                // Увеличиваем значение столбца в связанной записи
                 var TC = (Task)entry.Entity;
                 TC.TaskColumn.ItemCount += 1;
             }
